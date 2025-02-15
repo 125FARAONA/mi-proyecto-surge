@@ -8,16 +8,22 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    
+    - name: Check out repository
+      uses: actions/checkout@v2
 
-      - name: Install Node.js
-        uses: actions/setup-node@v16
+  
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
 
-      - name: Install Surge
-        run: npm install -g surge
+   
+    - name: Install Surge
+      run: npm install -g surge
 
-      - name: Deploy to Surge
-    run: surge ./ https://mi-proyecto-surge.surge.sh --token ${{ secrets.SURGE_TOKEN }}
-
+   
+    - name: Deploy to Surge
+      run: surge ./ https://mi-proyecto-surge.surge.sh --token ${{ secrets.SURGE_TOKEN }}
